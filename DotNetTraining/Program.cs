@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DotNetTraining
 {
@@ -65,11 +67,11 @@ namespace DotNetTraining
 
             #region Branching
             #region IF ELSE
-            if(age <= 40)
+            if (age <= 40)
             {
                 Console.WriteLine("Your age is 40");
             }
-            else if(age > 50 && age < 100)
+            else if (age > 50 && age < 100)
             {
                 Console.WriteLine("Your age is 50");
             }
@@ -80,7 +82,7 @@ namespace DotNetTraining
             #endregion
 
             #region Switch
-            switch(age)
+            switch (age)
             {
                 case 40:
                     Console.WriteLine("Your age is 40");
@@ -99,7 +101,7 @@ namespace DotNetTraining
             #region Loops
 
             #region For Loop & Nested Loop
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 for (int y = 0; y < 10; y++)
                 {
@@ -112,13 +114,13 @@ namespace DotNetTraining
                         break;
                     }
                 }
-                Console.WriteLine("i:{0}",i);
+                Console.WriteLine("i:{0}", i);
             }
             #endregion
 
             #region While
             int j = 0;
-            while(j < 10)
+            while (j < 10)
             {
                 if (j == 5)
                 {
@@ -142,14 +144,88 @@ namespace DotNetTraining
 
             #endregion
 
-            Console.WriteLine("First Name :" + firstName);
-
             #region Call a Method
             string fullName = TestMethod(firstName);
             Console.WriteLine($"fullName: {fullName}");
             #endregion
 
-            
+            #region Arrays
+
+            string[] firstNames = new string[4];
+
+            firstNames[0] = "Mithun";
+            firstNames[1] = "Swathi";
+            firstNames[2] = "Alp";
+            firstNames[3] = "Adetayo";
+
+            foreach(string fn in firstNames)
+            {
+                Console.WriteLine("First Name:" + fn);
+            }
+
+            object[] objs = new object[4];
+            objs[0] = "Test1";
+            objs[1] = "Test2";
+            objs[2] = "Test3";
+            objs[3] = "Test4";
+
+            int[] ages = new int[4];
+            ages[0] = 1;
+            ages[1] = 1;
+            ages[2] = 1;
+            ages[3] = 1;
+
+            int[] numbers = new int[10];
+            for(int i = 0; i < 10; i++)
+            {
+                numbers[i] = i;
+            }
+            #endregion
+
+            #region Collections
+            List<string> firstNamess = new List<string>();
+            firstNamess.Add("Test1");
+            firstNamess.Add("Test1"); 
+            firstNamess.Add("Test2");
+            firstNamess.Add("Test3");
+            firstNamess.Add("Test4");
+
+            firstNamess.Insert(2, "Test5");
+            int index = firstNamess.IndexOf("Test1");
+            firstNamess.RemoveAt(3);
+            firstNamess.Remove("Test4");
+
+            firstNamess.Sort();
+
+            firstNamess.Clear();
+
+            List<int> agess = new List<int>();
+            agess.Add(1);
+            agess.Add(2);
+            agess.Add(3);
+            agess.Add(4);
+
+            Hashtable hashtable = new Hashtable();
+            hashtable.Add("FieldA", "Error 1");
+            hashtable.Add(1, "Test1");
+            hashtable.Add("A", "Test1");
+            hashtable.Add("C", "Test2");
+
+            foreach(KeyValuePair<string, string> ht in hashtable.Values)
+            {
+                Console.WriteLine(ht.Key + " " + ht.Value);
+            }
+            string valA = hashtable["A"].ToString();
+
+            Dictionary<string, string> dictionary = new Dictionary<string, string>();
+            foreach (KeyValuePair<string, string> ht in dictionary)
+            {
+                Console.WriteLine(ht.Key + " " + ht.Value);
+            }
+
+            Queue q = new Queue();
+
+            #endregion
 
         }
 
