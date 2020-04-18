@@ -11,7 +11,7 @@ namespace DotNetTraining.Library
             
         }
 
-        public int TotalAnnualSalary { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public int TotalAnnualSalary { get ; set ; }
 
         public void CalculateSalary()
         {
