@@ -2,7 +2,7 @@
 
 namespace DotNetTraining.Library
 {
-    public abstract class Person
+    public class Person
     {
         #region Variable
         private int salary;
@@ -21,7 +21,14 @@ namespace DotNetTraining.Library
         {
             Console.WriteLine("Default Constructor from the Base");
         }
+        public Person(string firstName, string lastName)
+        {
 
+        }
+        public Person(string lastName)
+        {
+
+        }
         public Person(int annualSalary)
         {
             DummySalary = annualSalary;
@@ -54,10 +61,25 @@ namespace DotNetTraining.Library
 
             return fullname;
         }
-        
-        #endregion
-        #endregion
 
         #endregion
+        public virtual void GetAddress()
+        {
+            Console.WriteLine("Base class implementation");
+        }
+
+        
+        //public abstract void SampleAbstractMethod();
+
+        #endregion
+
+
+        public static void TestStaticMethod()
+        {
+
+        }
+        #endregion
+
+
     }
 }

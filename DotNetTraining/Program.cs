@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DotNetTraining
 {
@@ -245,24 +246,55 @@ namespace DotNetTraining
             #region OOP
             TryClasses();
             #endregion
+
+            #region Extension Methods
+            TestExtensionMethod();
+            #endregion
+
+            #region System IO
+            TestSystemIO();
+            #endregion
+
+            #region Tuples
+            Tuple<string, int, double> tuple = TestTuples();
+            string firstname = tuple.Item1;
+
+            Console.WriteLine(tuple.Item2);
+            Console.WriteLine(tuple.Item3);
+            #endregion
         }
 
         private static void TryClasses()
         {
-            //Person person = new Person();
-            //person.FirstName = "Mithun";
+            Person person = new Person();
+            person.FirstName = "Mithun";
             //person.LastName = "Ashwathappa";
             //string fullName = person.GetFullName();
             //Console.WriteLine("Full Name :" + fullName);
+            
+            Person.TestStaticMethod();
+
+            
 
             Developer developer = new Developer("test");
             developer.FirstName = "Mithun";
             developer.LastName = "Ashwathappa";
             developer.TypeTDeveloper = "C#";
+            Console.WriteLine(developer.Test);
 
-            ISalary developerSalary = developer;
-            developerSalary.CalculateSalary();
+            Developer developer1 = new Developer("test");
+            developer1.FirstName = "Mithun";
+            developer1.LastName = "Ashwathappa";
+            developer1.TypeTDeveloper = "C#";
 
+            //ISalary developerSalary = developer;
+            //developerSalary.CalculateSalary();
+            //developer.GetAddress();
+
+            //Manager manager = new Manager();
+            //manager.GetAddress();
+
+            //manager.CalculateSalary();
             //person.FullName;// = fullName;
         }
 
@@ -271,9 +303,10 @@ namespace DotNetTraining
         {
             try
             {
+                int salary = 100;
                 Console.WriteLine($"firstName : {firstName}");
 
-                return $"My full Name is {firstName}{lastName}";
+                return $"My full Name is {firstName}{lastName}" + "|" + salary;
             }
             catch (Exception e)
             {
@@ -281,6 +314,59 @@ namespace DotNetTraining
                 return null;
             }
             
+        }
+
+        [System.Obsolete]
+        private static void TestExtensionMethod()
+        {
+            string gender = "M";
+            string fullgender = gender.CharToFullStringExtension();
+
+            Console.WriteLine(fullgender);
+            //"M = "Male"
+        }
+
+
+        private static void TestSystemIO()
+        {
+            string file = "Test.txt";
+            if (File.Exists(file))
+            {
+                File.AppendAllText(file, DateTime.Now + ", Test Data 1 \n");
+            }
+            else
+            {
+                File.WriteAllText(file, DateTime.Now + ", Test Data\n");
+            }
+
+            Console.WriteLine("Read All Text");
+            string readdata = File.ReadAllText(file);
+            Console.WriteLine(readdata);
+
+            var readalllines = File.ReadAllLines(file);
+            Console.WriteLine("Read All lines");
+            foreach(string line in readalllines)
+            {
+                Console.WriteLine(line);
+            }
+
+            //Directory.CreateDirectory(@"D:\Projects\RemoteTiger\Batch4\DotNetTraining\DotNetTraining\bin\Debug\netcoreapp3.1\Test");
+
+            string[] files = Directory.GetFiles(@"D:\Projects\RemoteTiger\Batch4\DotNetTraining\DotNetTraining\bin\Debug\netcoreapp3.1");
+            foreach(string f in files)
+            {
+                FileInfo fi = new FileInfo(f);
+                Console.WriteLine(f);
+            }
+        }
+
+
+        private static Tuple<string, int,double> TestTuples()
+        {
+            int salary = 100;
+            string firstName = "Mithun";
+            
+            return Tuple.Create(firstName, salary,500.0);
         }
     }
 }
