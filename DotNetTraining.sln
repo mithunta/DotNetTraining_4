@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTraining", "DotNetTraining\DotNetTraining.csproj", "{B839C795-F4A8-468E-A90E-9C06F534497E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetTraining", "DotNetTraining\DotNetTraining.csproj", "{B839C795-F4A8-468E-A90E-9C06F534497E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetTraining.Library", "DotNetTraining.Library\DotNetTraining.Library.csproj", "{6B67BA09-253C-4160-9244-EB5452DEE1C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B839C795-F4A8-468E-A90E-9C06F534497E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B839C795-F4A8-468E-A90E-9C06F534497E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B839C795-F4A8-468E-A90E-9C06F534497E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B67BA09-253C-4160-9244-EB5452DEE1C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B67BA09-253C-4160-9244-EB5452DEE1C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B67BA09-253C-4160-9244-EB5452DEE1C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B67BA09-253C-4160-9244-EB5452DEE1C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

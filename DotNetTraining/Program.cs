@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DotNetTraining.Library;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -122,12 +123,13 @@ namespace DotNetTraining
             int j = 0;
             while (j < 10)
             {
+                j++;
                 if (j == 5)
                 {
                     continue;
                 }
                 Console.WriteLine(j);
-                j++;
+
             }
             #endregion
 
@@ -158,7 +160,7 @@ namespace DotNetTraining
             firstNames[2] = "Alp";
             firstNames[3] = "Adetayo";
 
-            foreach(string fn in firstNames)
+            foreach (string fn in firstNames)
             {
                 Console.WriteLine("First Name:" + fn);
             }
@@ -176,7 +178,7 @@ namespace DotNetTraining
             ages[3] = 1;
 
             int[] numbers = new int[10];
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 numbers[i] = i;
             }
@@ -185,7 +187,7 @@ namespace DotNetTraining
             #region Collections
             List<string> firstNamess = new List<string>();
             firstNamess.Add("Test1");
-            firstNamess.Add("Test1"); 
+            firstNamess.Add("Test1");
             firstNamess.Add("Test2");
             firstNamess.Add("Test3");
             firstNamess.Add("Test4");
@@ -207,14 +209,26 @@ namespace DotNetTraining
 
             Hashtable hashtable = new Hashtable();
             hashtable.Add("FieldA", "Error 1");
-            hashtable.Add(1, "Test1");
+            hashtable.Add("1", "Test1");
             hashtable.Add("A", "Test1");
             hashtable.Add("C", "Test2");
 
-            foreach(KeyValuePair<string, string> ht in hashtable.Values)
+            try
             {
-                Console.WriteLine(ht.Key + " " + ht.Value);
+                foreach (DictionaryEntry ht in hashtable.Values)
+                {
+                    Console.WriteLine(ht.Key + " " + ht.Value);
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("Finished executing hastable");
+            }
+
             string valA = hashtable["A"].ToString();
 
             Dictionary<string, string> dictionary = new Dictionary<string, string>();
@@ -227,14 +241,46 @@ namespace DotNetTraining
 
             #endregion
 
+
+            #region OOP
+            TryClasses();
+            #endregion
+        }
+
+        private static void TryClasses()
+        {
+            //Person person = new Person();
+            //person.FirstName = "Mithun";
+            //person.LastName = "Ashwathappa";
+            //string fullName = person.GetFullName();
+            //Console.WriteLine("Full Name :" + fullName);
+
+            Developer developer = new Developer("test");
+            developer.FirstName = "Mithun";
+            developer.LastName = "Ashwathappa";
+            developer.TypeTDeveloper = "C#";
+
+            ISalary developerSalary = developer;
+            developerSalary.CalculateSalary();
+
+            //person.FullName;// = fullName;
         }
 
         //AccessModifier(public) MethodType(static) ReturnType(void/string....) MethodName(TestMethod) (string firstName Arguments)
         private static string TestMethod(string firstName)
         {
-            Console.WriteLine($"firstName : {firstName}");
+            try
+            {
+                Console.WriteLine($"firstName : {firstName}");
 
-            return $"My full Name is {firstName}{lastName}";
+                return $"My full Name is {firstName}{lastName}";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            
         }
     }
 }
