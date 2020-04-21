@@ -9,6 +9,7 @@ namespace DotNetTraining
     class Program
     {
         private static string lastName="Ashwathappa";
+        static List<Users> users = new List<Users>();
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
@@ -262,6 +263,37 @@ namespace DotNetTraining
             Console.WriteLine(tuple.Item2);
             Console.WriteLine(tuple.Item3);
             #endregion
+
+
+            #region Reflection
+
+            Type type = typeof(Users);
+            var methods = type.GetMethods();
+
+            foreach(var method in methods)
+            {
+                Console.WriteLine(method.Name);
+            }
+
+            #endregion
+
+            Assignment21();
+
+            #region Generic
+            var data = TestGeneric(users);
+            Console.WriteLine(data);
+
+            List<Authors> authors = new List<Authors>();
+            authors.Add(new Authors() { AuthorId = 1, AuthorName = "Mithun1" });
+            authors.Add(new Authors() { AuthorId = 2, AuthorName = "Mithun2" });
+            data = TestGeneric(authors);
+            Console.WriteLine(data);
+
+            #endregion
+
+            #region Enums
+            TestEnum();
+            #endregion
         }
 
         private static void TryClasses()
@@ -367,6 +399,85 @@ namespace DotNetTraining
             string firstName = "Mithun";
             
             return Tuple.Create(firstName, salary,500.0);
+        }
+
+        
+        private static void Assignment21()
+        {
+            string filename = @"D:\Projects\RemoteTiger\Batch4\Assignment2.1.txt";
+
+            string[] lines = File.ReadAllLines(filename);
+            
+            foreach(string line in lines)
+            {
+                string[] data = line.Split('\t');
+                Users u = new Users();
+                u.UserName = data[0];
+                u.Password = data[1];
+                u.FirstName = data[2];
+                u.LastName = data[3];
+
+                users.Add(u);
+
+            }
+                
+
+            foreach(Users u in users)
+            {
+                Console.WriteLine($"UserName : {u.UserName}, Password:{u.Password}, FirstName:{u.FirstName}, LastName:{u.LastName}");
+            }
+
+        }
+
+        private static string TestGeneric<T>(T o)
+        {
+            SeDeGenerics seDeGenerics = new SeDeGenerics();
+
+            string jsondata = seDeGenerics.Serialization(o);
+
+            return jsondata;
+
+
+        }
+        delegate string DeletegateConcate(string firstname, string lastname);
+        delegate string DeletegateReverse(string firstname, string lastname);
+        static DelegatesExample delegatesExample = new DelegatesExample();
+        static DeletegateConcate deletegateConcate;
+
+        private static void TestDelegates()
+        {
+            if (deletegateConcate == null)
+            {
+                deletegateConcate = new DeletegateConcate(delegatesExample.Cancatenate);
+            }
+            var d = new DeletegateReverse(delegatesExample.Reverse);
+            string fullname = deletegateConcate("Mithun", "Ashwathappa");
+            d("Mithun", "Ashwathappa");
+            Console.WriteLine(fullname);
+
+        }
+
+
+        private static void TestEnum()
+        {
+            //WeekDays.Monday
+            WhatDay(day:(int)WeekDays.Monday);
+
+                
+        }
+
+        private static void WhatDay(int day)
+        {
+            WeekDays weekDays;
+            Enum.TryParse<WeekDays>(day.ToString(), out weekDays);
+            Console.WriteLine(weekDays);
+
+            switch (day)
+            {
+                case (int)WeekDays.Monday:
+
+                    break;
+            }
         }
     }
 }
